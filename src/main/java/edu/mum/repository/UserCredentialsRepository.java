@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import edu.mum.domain.UserCredentials;
 
 @Repository
-public interface UserCredentialsRepository extends CrudRepository<UserCredentials,String> {
-  
+public interface UserCredentialsRepository extends CrudRepository<UserCredentials, String> {
+
 	public UserCredentials findByUsername(String username);
 }

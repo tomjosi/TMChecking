@@ -1,24 +1,18 @@
 package edu.mum.validation;
 
 import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
- 
 import javax.validation.Constraint;
+import javax.validation.OverridesAttribute;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
-import javax.validation.OverridesAttribute;
-
-import javax.validation.constraints.Null;
- 
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.ConstraintComposition;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.CompositionType;
  
 @NotEmpty( )
 @Size
