@@ -1,20 +1,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<%@ include file="includes/header.jsp" %>
 <title>Members</title>
 </head>
 <body>
+	<%@ include file="includes/navbar.jsp" %>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>One of our People</h1>
-				<p>An important contributor to our Community!!!</p>
+				<h1>Our People</h1>
+				<p>All of the contributors to our Community!!!</p>
+
+				<div class="pull-left">
+					<h3>${SpecialBlurb}</h3>
+				</div>
 			</div>
 			<a href="<spring:url value="/persons/add" />"
 				class="btn btn-primary btn-mini pull-right">Add a new one</a> <br>
@@ -29,26 +35,25 @@
 				</div>
 			</form:form>
 
-
-			<div class="pull-left">
-				<h3>${SpecialBlurb}</h3>
-			</div>
-
 		</div>
 	</section>
 
 	<section class="container">
 		<div class="row">
-			<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
-				<div class="thumbnail">
-					<div class="caption">
-						<h3>First Name - ${member.firstName}</h3>
-						<h3>Last Name - ${member.lastName}</h3>
-
+			<c:forEach items="${persons}" var="person">
+				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
+					<div class="thumbnail">
+						<div class="caption">
+							<h4>First Name - ${person.firstName}</h4>
+							<h4>
+								Last Name - ${person.lastName} <a
+									href="<spring:url value="/persons/number/${person.id}" />"
+									class="btn btn-primary  btn-mini  ">View</a>
+							</h4>
+						</div>
 					</div>
 				</div>
-			</div>
-
+			</c:forEach>
 		</div>
 	</section>
 </body>

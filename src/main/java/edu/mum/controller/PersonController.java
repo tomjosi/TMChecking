@@ -22,42 +22,43 @@ public class PersonController {
 	@Autowired
 	private PersonService personService;
 
+	@SuppressWarnings("unused")
 	@Autowired
 	private UserCredentialsService credentialsService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listMembers(Model model) {
-		model.addAttribute("members", personService.findAll());
-		return "members";
+		model.addAttribute("persons", personService.findAll());
+		return "persons";
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String getMemberById(@PathVariable("id") Long id, Model model) {
-		Person member = personService.findOne(id);
-		model.addAttribute("member", member);
+		Person person = personService.findOne(id);
+		model.addAttribute("person", person);
 
-		return "member";
+		return "person";
 	}
 
 	@RequestMapping(value = "/number/{id}", method = RequestMethod.GET)
 	public String getMemberByMemberNumber(@PathVariable("id") Long id, Model model) {
-		Person member = personService.findById(id);
-		model.addAttribute("member", member);
+		Person person = personService.findById(id);
+		model.addAttribute("person", person);
 
-		return "member";
+		return "person";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String getAddNewMemberForm(@ModelAttribute("newMember") Person newMember) {
-		return "addMember";
+	public String getAddNewMemberForm(@ModelAttribute("newPerson") Person newPerson) {
+		return "addPerson";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String processAddNewMemberForm(@ModelAttribute("newMember") @Valid Person memberToBeAdded,
+	public String processAddNewMemberForm(@ModelAttribute("newPerson") @Valid Person memberToBeAdded,
 			BindingResult result) {
 
 		if (result.hasErrors()) {
-			return "addMember";
+			return "addPerson";
 		}
 
 		// Error caught by ControllerAdvice IF no authorization...

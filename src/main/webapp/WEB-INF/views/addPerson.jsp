@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<%@ include file="includes/header.jsp"%>
 <title>Products</title>
 </head>
 <body>
+	<%@ include file="includes/navbar.jsp"%>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
@@ -20,7 +20,7 @@
 		</div>
 	</section>
 	<section class="container">
-		<form:form modelAttribute="newMember" class="form-horizontal">
+		<form:form modelAttribute="newPerson" class="form-horizontal">
 			<fieldset>
 				<legend>Add new member</legend>
 

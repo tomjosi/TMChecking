@@ -14,14 +14,14 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Appointment Management</a>
+			<a class="navbar-brand" href="<spring:url value='/' />">Appointment Management</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Create Appointment <span
+				<li class="active"><a href="<spring:url value='/' />">Home <span
 						class="sr-only">(current)</span></a></li>
 				<li><a href="#">View Appointment</a></li>
 			</ul>
