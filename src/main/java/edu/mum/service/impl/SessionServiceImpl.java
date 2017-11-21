@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.mum.domain.Session;
 import edu.mum.repository.SessionRepository;
 import edu.mum.service.SessionService;
-import edu.mum.service.UserCredentialsService;
 
 @Service
 @Transactional
@@ -18,9 +17,6 @@ public class SessionServiceImpl implements SessionService {
 
 	@Autowired
 	private SessionRepository sessionRepository;
-
-	@Autowired
-	UserCredentialsService credentialsService;
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void save(Session session) {

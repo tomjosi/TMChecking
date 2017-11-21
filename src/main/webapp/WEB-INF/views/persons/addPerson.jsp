@@ -61,9 +61,9 @@
 						Name</label>
 					<div class="col-lg-10">
 						<div class="form:input-prepend">
-							<form:input id="username" path="userCredentials.username"
+							<form:input id="username" path="username"
 								type="text" class="form-control" />
-							<form:errors path="userCredentials.username"
+							<form:errors path="username"
 								cssClass="text-danger" />
 						</div>
 					</div>
@@ -74,9 +74,9 @@
 					<label class="control-label col-lg-2" for="password">Password</label>
 					<div class="col-lg-10">
 						<div class="form:input-prepend">
-							<form:password id="password" path="userCredentials.password"
+							<form:password id="password" path="password"
 								class="form-control" />
-							<form:errors path="userCredentials.password"
+							<form:errors path="password"
 								cssClass="text-danger" />
 						</div>
 					</div>
@@ -88,9 +88,9 @@
 						Password</label>
 					<div class="col-lg-10">
 						<div class="form:input-prepend">
-							<form:password path="userCredentials.verifyPassword"
+							<form:password path="verifyPassword"
 								class="form-control" />
-							<form:errors path="userCredentials.verifyPassword"
+							<form:errors path="verifyPassword"
 								cssClass="text-danger" />
 						</div>
 					</div>
@@ -101,18 +101,18 @@
 						Role</label>
 					<div class="col-lg-10">
 						<div class="form:input-prepend">
-							<form:select class="form-control" id="sel1" path="userCredentials.authority[0].authority">
+							<form:select class="form-control" id="sel1" path="authority[0].authority">
 								<option value="ROLE_USER">User</option>
 								<option value="ROLE_COUNSELOR">Counselor</option>
 							</form:select>
 
-							<form:errors path="userCredentials.authority[0].authority"
+							<form:errors path="authority[0].authority"
 								cssClass="text-danger" />
 						</div>
 					</div>
 				</div>
 
-				<form:hidden path="userCredentials.enabled" value="TRUE" />
+				<form:hidden path="enabled" value="TRUE" />
 
 
 				<div class="form-group">

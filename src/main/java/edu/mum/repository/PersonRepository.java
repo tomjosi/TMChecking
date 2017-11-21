@@ -8,4 +8,6 @@ import edu.mum.domain.Person;
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Long> {
 	public Person findById(Long id);
+	
+	public Person findByUsername(String username);
 }

@@ -15,7 +15,6 @@ import edu.mum.domain.Person;
 import edu.mum.domain.Session;
 import edu.mum.service.PersonService;
 import edu.mum.service.SessionService;
-import edu.mum.service.UserCredentialsService;
 
 @Controller
 @RequestMapping({ "/sessions" })
@@ -26,10 +25,6 @@ public class SessionController {
 
 	@Autowired
 	private PersonService personService;
-
-	@SuppressWarnings("unused")
-	@Autowired
-	private UserCredentialsService credentialsService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listSessions(Model model) {

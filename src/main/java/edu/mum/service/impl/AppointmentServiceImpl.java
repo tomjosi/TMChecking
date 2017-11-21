@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.mum.domain.Appointment;
 import edu.mum.repository.AppointmentRepository;
 import edu.mum.service.AppointmentService;
-import edu.mum.service.UserCredentialsService;
 
 @Service
 @Transactional
@@ -18,9 +17,6 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Autowired
 	private AppointmentRepository appointmentRepository;
-
-	@Autowired
-	UserCredentialsService credentialsService;
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void save(Appointment appointment) {

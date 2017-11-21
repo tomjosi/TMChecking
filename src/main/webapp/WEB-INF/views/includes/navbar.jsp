@@ -51,6 +51,7 @@
 <!-- 				<li><a href="#">View Appointment</a></li> -->
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+			
 				<security:authorize access="isAuthenticated()">
 					<p class="navbar-text navbar-right">
 						Signed in as <a href="#" class="navbar-link"> <security:authentication
@@ -59,8 +60,7 @@
 					</p>
 
 					<%-- <li><a href="<spring:url value='/logout' />"> Logout</a></li> --%>
-
-					<style>
+<style>
 .logout {
 	position: relative;
 	top: 8px;
@@ -68,6 +68,7 @@
 	text-decoration: none;
 }
 </style>
+					
 
 					<li><spring:url value="/logout" var="logout_url" /> <form:form
 							action="${logout_url}" class="form-horizontal" method="POST">

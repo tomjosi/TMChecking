@@ -8,14 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "authority")
+@Table(name = "authorities")
 public class Authority {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 
-	private String username;
+	private String role;
   	@Column(nullable = false)
  	private String authority;
  	
@@ -26,11 +26,11 @@ public class Authority {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getRole() {
+		return role;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setRole(String role) {
+		this.role = role;
 	}
 	public String getAuthority() {
 		return authority;

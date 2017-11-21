@@ -19,7 +19,6 @@ import edu.mum.domain.Session;
 import edu.mum.service.AppointmentService;
 import edu.mum.service.PersonService;
 import edu.mum.service.SessionService;
-import edu.mum.service.UserCredentialsService;
 
 @Controller
 @RequestMapping({ "/appointments" })
@@ -30,12 +29,9 @@ public class AppointmentController {
 
 	@Autowired
 	private SessionService sessionService;
-	
+
 	@Autowired
 	private PersonService personService;
-	
-	@Autowired
-	private UserCredentialsService credentialsService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listAppointments(Model model) {
@@ -66,10 +62,8 @@ public class AppointmentController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String getAddNewAppointmentForm(@ModelAttribute("session") Appointment appointment, Model model, Principal principal) {
+	public String getAddNewAppointmentForm(@ModelAttribute("session") Appointment appointment, Model model) {
 		model.addAttribute("appointment", appointment);
-		System.out.println(principal.getName());
-		System.out.println(credentialsService.findByUsername(principal.getName()).getUsername());
 		model.addAttribute("sessions", sessionService.findAll());
 		return "appointments/create";
 	}
@@ -91,17 +85,16 @@ public class AppointmentController {
 		
 		System.out.println(principal.getName());
 
-		Long id = (long) 2;
+		Long id = (long) 1;
 		Session session = sessionService.findOne(id);
 		
-		Long customerId = (long) 3;
-		Person customer = personService.findOne(customerId);
-		
+		Person customer = personService.findByUsername(principal.getName());
+
 		appointment.setSession(session);
 		appointment.setCustomer(customer);
 
 		// Error caught by ControllerAdvice IF no authorization...
-		 appointmentService.save(appointment);
+		appointmentService.save(appointment);
 
 		return "redirect:/appointments";
 

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.mum.domain.Person;
 import edu.mum.service.PersonService;
-import edu.mum.service.UserCredentialsService;
 
 @Controller
 @RequestMapping({ "/persons" })
@@ -21,10 +20,6 @@ public class PersonController {
 
 	@Autowired
 	private PersonService personService;
-
-	@SuppressWarnings("unused")
-	@Autowired
-	private UserCredentialsService credentialsService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listMembers(Model model) {
@@ -54,7 +49,7 @@ public class PersonController {
 		}
 
 		// Error caught by ControllerAdvice IF no authorization...
-		personService.saveFull(memberToBeAdded);
+		personService.save(memberToBeAdded);
 
 		return "redirect:/persons";
 	}

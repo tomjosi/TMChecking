@@ -13,31 +13,31 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name="session")
-public class Session implements Serializable{
-	
+@Table(name = "sessions")
+public class Session implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-//	@Temporal(TemporalType.DATE)
+	// @Temporal(TemporalType.DATE)
 	@NotEmpty
 	private String date;
 	@NotEmpty
-//	@Temporal(TemporalType.TIME)
-	private String  startTime;
-//	@Range(min=0, max=30)
+	// @Temporal(TemporalType.TIME)
+	private String startTime;
+	// @Range(min=0, max=30)
 	private int duration;
 	@NotEmpty
 	private String location;
-//	@NotEmpty
+	// @NotEmpty
 	private int capacity;
-	
+
 	@OneToOne
-	@JoinColumn(name="counselor_id")
+	@JoinColumn(name = "counselor_id")
 	private Person person;
 
 	public long getId() {
