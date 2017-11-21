@@ -26,7 +26,7 @@
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Person <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="<spring:url value='/persons/add' />">Add Person</a></li>
+						<li><a href="<spring:url value='/persons/create' />">Add Person</a></li>
 						<li><a href="<spring:url value='/persons' />">List Person</a></li>
 					</ul>
 				</li>

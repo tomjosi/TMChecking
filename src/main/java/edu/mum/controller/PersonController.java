@@ -40,20 +40,12 @@ public class PersonController {
 		return "persons/person";
 	}
 
-	@RequestMapping(value = "/number/{id}", method = RequestMethod.GET)
-	public String getMemberByMemberNumber(@PathVariable("id") Long id, Model model) {
-		Person person = personService.findById(id);
-		model.addAttribute("person", person);
-
-		return "persons/person";
-	}
-
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String getAddNewMemberForm(@ModelAttribute("newPerson") Person newPerson) {
 		return "persons/addPerson";
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String processAddNewMemberForm(@ModelAttribute("newPerson") @Valid Person memberToBeAdded,
 			BindingResult result) {
 

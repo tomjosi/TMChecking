@@ -20,6 +20,7 @@
 		</div>
 	</section>
 	<section class="container">
+	
 		<form:form modelAttribute="newPerson" class="form-horizontal">
 			<fieldset>
 				<legend>Add new member</legend>
@@ -31,7 +32,7 @@
 						Name</label>
 					<div class="col-lg-10">
 						<form:input id="firstName" path="firstName" type="text"
-							class="form:input-large" />
+							class="form-control" />
 						<form:errors path="firstName" cssClass="text-danger" />
 					</div>
 				</div>
@@ -41,7 +42,7 @@
 						Name</label>
 					<div class="col-lg-10">
 						<form:input id="lastName" path="lastName" type="text"
-							class="form:input-large" />
+							class="form-control" />
 						<form:errors path="lastName" cssClass="text-danger" />
 					</div>
 				</div>
@@ -52,7 +53,7 @@
 					<div class="col-lg-10">
 						<div class="form:input-prepend">
 							<form:input id="username" path="userCredentials.username"
-								type="text" class="form:input-large" />
+								type="text" class="form-control" />
 							<form:errors path="userCredentials.username"
 								cssClass="text-danger" />
 						</div>
@@ -65,7 +66,7 @@
 					<div class="col-lg-10">
 						<div class="form:input-prepend">
 							<form:password id="password" path="userCredentials.password"
-								class="form:input-large" />
+								class="form-control" />
 							<form:errors path="userCredentials.password"
 								cssClass="text-danger" />
 						</div>
@@ -79,7 +80,7 @@
 					<div class="col-lg-10">
 						<div class="form:input-prepend">
 							<form:password path="userCredentials.verifyPassword"
-								class="form:input-large" />
+								class="form-control" />
 							<form:errors path="userCredentials.verifyPassword"
 								cssClass="text-danger" />
 						</div>
@@ -91,7 +92,7 @@
 					<div class="col-lg-10">
 						<div class="form:input-prepend">
 							<form:input path="userCredentials.authority[0].authority"
-								type="text" value="ROLE_USER" class="form:input-large" />
+								type="text" value="ROLE_USER" class="form-control" />
 							<form:errors path="userCredentials.authority[0].authority"
 								cssClass="text-danger" />
 						</div>
@@ -103,7 +104,7 @@
 
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-						<input type="submit" id="btnAdd" class="btn btn-primary"
+						<input type="submit" id="btnAdd" class="btn btn-primary btn-block"
 							value="Add" />
 					</div>
 				</div>
