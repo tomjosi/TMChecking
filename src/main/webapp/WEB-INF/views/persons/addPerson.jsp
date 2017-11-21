@@ -20,7 +20,7 @@
 		</div>
 	</section>
 	<section class="container">
-	
+
 		<form:form modelAttribute="newPerson" class="form-horizontal">
 			<fieldset>
 				<legend>Add new member</legend>
@@ -44,6 +44,15 @@
 						<form:input id="lastName" path="lastName" type="text"
 							class="form-control" />
 						<form:errors path="lastName" cssClass="text-danger" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="email">Email Address</label>
+					<div class="col-lg-10">
+						<form:input id="email" path="emailAddress" type="email"
+							class="form-control" />
+						<form:errors path="emailAddress" cssClass="text-danger" />
 					</div>
 				</div>
 
@@ -88,11 +97,15 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-lg-2" for="authority">Role</label>
+					<label class="control-label col-lg-2" for="verifyPassword">
+						Role</label>
 					<div class="col-lg-10">
 						<div class="form:input-prepend">
-							<form:input path="userCredentials.authority[0].authority"
-								type="text" value="ROLE_USER" class="form-control" />
+							<form:select class="form-control" id="sel1" path="userCredentials.authority[0].authority">
+								<option value="ROLE_USER">User</option>
+								<option value="ROLE_COUNSELOR">Counselor</option>
+							</form:select>
+
 							<form:errors path="userCredentials.authority[0].authority"
 								cssClass="text-danger" />
 						</div>

@@ -30,7 +30,7 @@
 		<!-- COMMENT out the following to see @Service METHOD level authorization -->
 		<security:intercept-url pattern="/persons"
 	access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" />
-		<security:intercept-url pattern="/persons/add"
+		<security:intercept-url pattern="/persons/*"
 			access="hasRole('ROLE_ADMIN')" />
 
 		<!-- Switch to HTTPS -->

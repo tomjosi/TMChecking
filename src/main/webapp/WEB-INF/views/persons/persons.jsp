@@ -22,7 +22,7 @@
 					<h3>${SpecialBlurb}</h3>
 				</div>
 			</div>
-			<a href="<spring:url value="/persons/add" />"
+			<a href="<spring:url value="/persons/create" />"
 				class="btn btn-primary btn-mini pull-right">Add a new one</a>
 
 		</div>

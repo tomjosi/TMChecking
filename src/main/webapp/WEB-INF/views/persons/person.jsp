@@ -16,18 +16,8 @@
 				<h1>One of our People</h1>
 				<p>An important contributor to our Community!!!</p>
 			</div>
-			<a href="<spring:url value="/persons/add" />"
-				class="btn btn-primary btn-mini pull-right">Add a new one</a> <br>
-			<spring:url value="/logout" var="logout_url" />
-			<form:form action="${logout_url}" class="form-horizontal"
-				method="POST">
-				<div class="form-group">
-					<div class="col-lg-offset-2 col-lg-10">
-						<input type="submit" id="btnAdd"
-							class="btn btn-danger btn-mini  pull-right" value="Logout" />
-					</div>
-				</div>
-			</form:form>
+			<a href="<spring:url value="/persons/create" />"
+				class="btn btn-primary btn-mini pull-right">Add a new one</a>
 
 
 			<div class="pull-left">
