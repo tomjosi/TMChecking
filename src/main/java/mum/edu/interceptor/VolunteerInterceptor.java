@@ -1,7 +1,5 @@
 package mum.edu.interceptor;
 
-import java.security.Principal;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,7 +13,7 @@ public class VolunteerInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 
 		// test interceptor Order
-		System.out.println("INTERCEPTOR PREHANDLE");
+//		System.out.println("INTERCEPTOR PREHANDLE");
 
 		return true;
 
@@ -26,7 +24,7 @@ public class VolunteerInterceptor extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 //		String userMessage = "Become a Community Member - Join the Team!";
 
-		Principal principal = request.getUserPrincipal();
+//		Principal principal = request.getUserPrincipal();
 
 //		if (principal != null) {
 //			if (request.isUserInRole("ROLE_ADMIN"))

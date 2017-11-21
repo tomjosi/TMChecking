@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ include file="../includes/header.jsp"%>
-<title>Products</title>
+<title>Create Person</title>
 </head>
 <body>
 	<%@ include file="../includes/navbar.jsp"%>

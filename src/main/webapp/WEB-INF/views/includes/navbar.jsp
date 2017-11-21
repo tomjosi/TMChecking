@@ -26,10 +26,19 @@
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Person <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="<spring:url value='/persons/create' />">Add Person</a></li>
+						<li><a href="<spring:url value='/persons/create' />">Add
+								Person</a></li>
 						<li><a href="<spring:url value='/persons' />">List Person</a></li>
-					</ul>
-				</li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Session <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="<spring:url value='/sessions/create' />">Create
+								Session</a></li>
+						<li><a href="<spring:url value='/sessions' />">List
+								Sessions</a></li>
+					</ul></li>
 				<li><a href="#">View Appointment</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -60,20 +69,12 @@
 								</div>
 							</div>
 						</form:form></li>
-
-
-
-
-
-
-
-
-
 				</security:authorize>
 
 
 
-				<security:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+				<security:authorize
+					access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_COUNSELOR')">
 					<li><a href="<spring:url value='/login' />"> Login</a></li>
 				</security:authorize>
 			</ul>

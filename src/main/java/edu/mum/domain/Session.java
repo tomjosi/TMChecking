@@ -1,7 +1,6 @@
 package edu.mum.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="session")
@@ -24,25 +23,25 @@ public class Session implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	@Temporal(TemporalType.DATE)
-	private Date date;
-	@Temporal(TemporalType.TIME)
-	private Date time;
+//	@Temporal(TemporalType.DATE)
+	@NotEmpty
+	private String date;
+	@NotEmpty
+//	@Temporal(TemporalType.TIME)
+	private String  startTime;
+//	@Range(min=0, max=30)
 	private int duration;
+	@NotEmpty
+	private String location;
+//	@NotEmpty
+	private int capacity;
 	
 	@OneToOne
-	@JoinColumn(name="person_id")
+	@JoinColumn(name="counselor_id")
 	private Person person;
 	
 	public Session() {
 		
-	}
-	
-	public Session(Date date, Date time, int duration) {
-		super();
-		this.date = date;
-		this.time = time;
-		this.duration = duration;
 	}
 
 	public long getId() {
@@ -53,20 +52,12 @@ public class Session implements Serializable{
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
-	}
-
-	public Date getTime() {
-		return time;
-	}
-
-	public void setTime(Date time) {
-		this.time = time;
 	}
 
 	public int getDuration() {
@@ -84,7 +75,28 @@ public class Session implements Serializable{
 	public void setPerson(Person person) {
 		this.person = person;
 	}
-	
-	
 
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
 }

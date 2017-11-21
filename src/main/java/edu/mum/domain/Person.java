@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -39,6 +40,9 @@ public class Person implements Serializable {
 	@Column(length = 60)
 	@NotEmpty
 	private String emailAddress;
+	
+	@Transient
+	private String fullName;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "person_id")
@@ -83,5 +87,11 @@ public class Person implements Serializable {
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
+
+	public String getFullName() {
+		return this.firstName + " " + this.lastName;
+	}
+	
+	
 
 }
