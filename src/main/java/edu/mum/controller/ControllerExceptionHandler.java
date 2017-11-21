@@ -17,14 +17,14 @@ public class ControllerExceptionHandler {
 
 	public static final String DEFAULT_ERROR_VIEW = "error";
 
-	@ModelAttribute("testOrder")
-	public String testOrder() {
-
-		// test interceptor Order
-		System.out.println("CONTROLLERADVICE PREHANDLE");
-
-		return "This is ADVICE ORDER!";
-	}
+//	@ModelAttribute("testOrder")
+//	public String testOrder() {
+//
+//		// test interceptor Order
+//		System.out.println("CONTROLLERADVICE PREHANDLE");
+//
+//		return "This is ADVICE ORDER!";
+//	}
 
 	@ExceptionHandler(value = AccessDeniedException.class)
 	public String accessDenied() {

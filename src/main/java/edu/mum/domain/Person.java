@@ -15,8 +15,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import edu.mum.validation.NullMinNumber;
-
 @Entity
 @Table(name = "person")
 public class Person implements Serializable {
@@ -42,11 +40,8 @@ public class Person implements Serializable {
 	@NotEmpty
 	private String emailAddress;
 
-	@NullMinNumber(value = 6)
-	private Integer memberNumber;
-
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "member_id")
+	@JoinColumn(name = "person_id")
 	UserCredentials userCredentials;
 
 	public Long getId() {
@@ -79,14 +74,6 @@ public class Person implements Serializable {
 
 	public void setUserCredentials(UserCredentials userCredentials) {
 		this.userCredentials = userCredentials;
-	}
-
-	public Integer getMemberNumber() {
-		return memberNumber;
-	}
-
-	public void setMemberNumber(Integer memberNumber) {
-		this.memberNumber = memberNumber;
 	}
 
 	public String getEmailAddress() {

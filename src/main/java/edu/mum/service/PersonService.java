@@ -11,7 +11,7 @@ public interface PersonService {
 
 	public List<Person> findAll();
  	public Person findOne(Long id);
-	public Person findByMemberNumber(int id);
+	public Person findById(Long id);
  
 	
 }

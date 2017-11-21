@@ -24,19 +24,19 @@ public class VolunteerInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		String userMessage = "Become a Community Member - Join the Team!";
+//		String userMessage = "Become a Community Member - Join the Team!";
 
 		Principal principal = request.getUserPrincipal();
 
-		if (principal != null) {
-			if (request.isUserInRole("ROLE_ADMIN"))
-				userMessage = "There is ALWAYS Free cookies at www.freebies.com";
-			else
-				userMessage = "We have Many NEW and exciting Volunteer opportunities!!!";
-		}
+//		if (principal != null) {
+//			if (request.isUserInRole("ROLE_ADMIN"))
+//				userMessage = "There is ALWAYS Free cookies at www.freebies.com";
+//			else
+//				userMessage = "We have Many NEW and exciting Volunteer opportunities!!!";
+//		}
 
 		// System.out.println("Calling postHandle");
-		modelAndView.getModelMap().addAttribute("SpecialBlurb", userMessage);
+//		modelAndView.getModelMap().addAttribute("SpecialBlurb", userMessage);
 
 		return;
 	}

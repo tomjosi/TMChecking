@@ -44,7 +44,6 @@
 					<div class="caption">
 						<h3>First Name - ${member.firstName}</h3>
 						<h3>Last Name - ${member.lastName}</h3>
-						<p>NUMBER - ${member.memberNumber}</p>
 
 					</div>
 				</div>

@@ -40,8 +40,8 @@ public class PersonController {
 	}
 
 	@RequestMapping(value = "/number/{id}", method = RequestMethod.GET)
-	public String getMemberByMemberNumber(@PathVariable("id") Integer id, Model model) {
-		Person member = personService.findByMemberNumber(id);
+	public String getMemberByMemberNumber(@PathVariable("id") Long id, Model model) {
+		Person member = personService.findById(id);
 		model.addAttribute("member", member);
 
 		return "member";

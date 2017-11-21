@@ -25,15 +25,6 @@
 				<legend>Add new member</legend>
 
 				<form:errors path="*" cssClass="alert alert-danger" element="div" />
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for="memberNumber">
-						Member Number</label>
-					<div class="col-lg-10">
-						<form:input id="memberNumber" path="memberNumber" type="text"
-							class="form:input-large" />
-						<form:errors path="memberNumber" cssClass="text-danger" />
-					</div>
-				</div>
 
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="firstName">First

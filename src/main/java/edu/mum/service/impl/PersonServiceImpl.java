@@ -42,8 +42,8 @@ public class PersonServiceImpl implements PersonService {
 		return personRepository.findOne(id);
 	}
 
-	public Person findByMemberNumber(int id) {
-		return personRepository.findByMemberNumber(id);
+	public Person findById(Long id) {
+		return personRepository.findById(id);
 	}
 
 }

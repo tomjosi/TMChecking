@@ -47,7 +47,7 @@
 							<h4>First Name - ${member.firstName}</h4>
 							<h4>
 								Last Name - ${member.lastName} <a
-									href="<spring:url value="/persons/number/${member.memberNumber}" />"
+									href="<spring:url value="/persons/number/${member.id}" />"
 									class="btn btn-primary  btn-mini  ">View</a>
 							</h4>
 						</div>

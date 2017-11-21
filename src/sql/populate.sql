@@ -5,7 +5,7 @@ INSERT INTO credentials(username,password, enabled) VALUES ('admin','$2a$10$S/wl
 INSERT INTO authority (username, authority) VALUES ('guest', 'ROLE_USER');
 INSERT INTO authority (username, authority) VALUES ('admin', 'ROLE_ADMIN');
  
-INSERT INTO  person (firstname, lastname,emailAddress, membernumber, member_id) VALUES ('Curious','George','admin@admin.com', 8754,'admin');
-INSERT INTO person (firstname, lastname,emailAddress,membernumber,member_id) VALUES ('Allen','Rench','guest@guest.com', 8733,'guest');
+INSERT INTO  person (firstname, lastname,emailAddress, person_id) VALUES ('Curious','George','admin@admin.com','admin');
+INSERT INTO person (firstname, lastname,emailAddress,person_id) VALUES ('Allen','Rench','guest@guest.com','guest');
  
 					
