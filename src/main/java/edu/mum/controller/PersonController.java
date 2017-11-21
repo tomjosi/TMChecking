@@ -57,7 +57,6 @@ public class PersonController {
 		personService.saveFull(memberToBeAdded);
 
 		return "redirect:/persons";
-
 	}
 
 }

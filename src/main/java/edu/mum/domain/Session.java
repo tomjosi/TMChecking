@@ -1,9 +1,6 @@
 package edu.mum.domain;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -44,10 +39,6 @@ public class Session implements Serializable{
 	@OneToOne
 	@JoinColumn(name="counselor_id")
 	private Person person;
-	
-	public Session() {
-		
-	}
 
 	public long getId() {
 		return id;

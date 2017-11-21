@@ -39,7 +39,16 @@
 						<li><a href="<spring:url value='/sessions' />">List
 								Sessions</a></li>
 					</ul></li>
-				<li><a href="#">View Appointment</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Appointment <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="<spring:url value='/appointments/create' />">Create
+								Appointment</a></li>
+						<li><a href="<spring:url value='/appointments' />">List
+								Appointments</a></li>
+					</ul></li>
+<!-- 				<li><a href="#">View Appointment</a></li> -->
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<security:authorize access="isAuthenticated()">

@@ -6,34 +6,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.Session;
-
 @Entity
-@Table(name="appointment")
-public class Appointment implements Serializable{
-	
+@Table(name = "appointment")
+public class Appointment implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "session_id")
 	private Session session;
 	
-
-	public Appointment() {
-		
-	}
-	
-	public Appointment(Session session) {
-		super();
-		this.session = session;
-	}
+	@JoinColumn(name = "customer_id")
+	@ManyToOne
+	private Person customer;
 
 	public long getId() {
 		return id;
@@ -49,5 +45,13 @@ public class Appointment implements Serializable{
 
 	public void setSession(Session session) {
 		this.session = session;
+	}
+
+	public Person getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Person customer) {
+		this.customer = customer;
 	}
 }
