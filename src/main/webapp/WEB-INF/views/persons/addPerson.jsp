@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<%@ include file="includes/header.jsp"%>
+<%@ include file="../includes/header.jsp"%>
 <title>Products</title>
 </head>
 <body>
-	<%@ include file="includes/navbar.jsp"%>
+	<%@ include file="../includes/navbar.jsp"%>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
@@ -111,5 +111,6 @@
 			</fieldset>
 		</form:form>
 	</section>
+	<%@ include file="../includes/footer.jsp"%>
 </body>
 </html>

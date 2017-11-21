@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<%@ include file="../includes/header.jsp"%>
 <title>Members</title>
 </head>
 <body>
+	<%@ include file="../includes/navbar.jsp"%>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
@@ -51,5 +51,6 @@
 
 		</div>
 	</section>
+	<%@ include file="../includes/footer.jsp"%>
 </body>
 </html>

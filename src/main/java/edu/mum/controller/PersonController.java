@@ -29,7 +29,7 @@ public class PersonController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listMembers(Model model) {
 		model.addAttribute("persons", personService.findAll());
-		return "persons";
+		return "persons/persons";
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -37,7 +37,7 @@ public class PersonController {
 		Person person = personService.findOne(id);
 		model.addAttribute("person", person);
 
-		return "person";
+		return "persons/person";
 	}
 
 	@RequestMapping(value = "/number/{id}", method = RequestMethod.GET)
@@ -45,12 +45,12 @@ public class PersonController {
 		Person person = personService.findById(id);
 		model.addAttribute("person", person);
 
-		return "person";
+		return "persons/person";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String getAddNewMemberForm(@ModelAttribute("newPerson") Person newPerson) {
-		return "addPerson";
+		return "persons/addPerson";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -58,7 +58,7 @@ public class PersonController {
 			BindingResult result) {
 
 		if (result.hasErrors()) {
-			return "addPerson";
+			return "persons/addPerson";
 		}
 
 		// Error caught by ControllerAdvice IF no authorization...

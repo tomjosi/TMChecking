@@ -7,11 +7,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<%@ include file="includes/header.jsp" %>
+<%@ include file="../includes/header.jsp" %>
 <title>Members</title>
 </head>
 <body>
-	<%@ include file="includes/navbar.jsp" %>
+	<%@ include file="../includes/navbar.jsp" %>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
@@ -23,17 +23,7 @@
 				</div>
 			</div>
 			<a href="<spring:url value="/persons/add" />"
-				class="btn btn-primary btn-mini pull-right">Add a new one</a> <br>
-			<spring:url value="/logout" var="logout_url" />
-			<form:form action="${logout_url}" class="form-horizontal"
-				method="POST">
-				<div class="form-group">
-					<div class="col-lg-offset-2 col-lg-10">
-						<input type="submit" id="btnAdd"
-							class="btn btn-danger btn-mini  pull-right" value="Logout" />
-					</div>
-				</div>
-			</form:form>
+				class="btn btn-primary btn-mini pull-right">Add a new one</a>
 
 		</div>
 	</section>
@@ -56,5 +46,6 @@
 			</c:forEach>
 		</div>
 	</section>
+	<%@ include file="../includes/footer.jsp"%>
 </body>
 </html>
