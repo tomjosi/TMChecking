@@ -1,6 +1,7 @@
 package edu.mum.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "sessions")
@@ -23,17 +31,24 @@ public class Session implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	// @Temporal(TemporalType.DATE)
-	@NotEmpty
-	private String date;
-	@NotEmpty
-	// @Temporal(TemporalType.TIME)
-	private String startTime;
-	// @Range(min=0, max=30)
+
+	@Temporal(TemporalType.DATE)
+	@NotNull
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
+	@Future
+	private Date date;
+
+	@NotNull
+	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm")
+	private Date startTime;
+	@NotNull
+	@Range(min = 10, max = 30)
 	private int duration;
 	@NotEmpty
 	private String location;
-	// @NotEmpty
+	@NotNull
+	@Min(value = 1)
 	private int capacity;
 
 	@OneToOne
@@ -48,11 +63,11 @@ public class Session implements Serializable {
 		this.id = id;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -80,11 +95,11 @@ public class Session implements Serializable {
 		this.capacity = capacity;
 	}
 
-	public String getStartTime() {
+	public Date getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(String startTime) {
+	public void setStartTime(Date startTime) {
 		this.startTime = startTime;
 	}
 
