@@ -3,20 +3,24 @@ package edu.mum.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@EnableAsync
 public class SendEmailController {
 	
 	@Autowired
     private JavaMailSender mailSender;
      
-    @RequestMapping(value="/mail",method = RequestMethod.GET)
+	@RequestMapping(value="/mail",method = RequestMethod.GET)
+    @Async
     public void doSendEmail() {
         // takes input from e-mail form
-        String recipientAddress = "yaman_upadhaya@yahoo.com";
+        String recipientAddress = "elycheikh16@gmail.com";
         String subject = "Test Email";
         String message = "Message successfully recieved...!";
          

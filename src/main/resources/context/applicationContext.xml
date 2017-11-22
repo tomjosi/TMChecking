@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xsi:schemaLocation="
@@ -8,7 +9,8 @@
       http://www.springframework.org/schema/beans/spring-beans.xsd
  	  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-      http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+      http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+      http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
 	<context:property-placeholder location="classpath:application.properties" />
 
@@ -48,7 +50,7 @@
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
 		<property name="username" value="account.yaman@gmail.com" />
-		<property name="password" value="abc@google" />
+		<property name="password" value="project@ea" />
 
 		<property name="javaMailProperties">
 			<!-- additional properties specific to JavaMail -->
@@ -60,6 +62,14 @@
 			</props>
 		</property>
 	</bean>
+	
+	 <!-- Mail sending must be queued. Here is the task executor -->
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="5" />
+        <property name="maxPoolSize" value="25" />
+        <property name="queueCapacity" value="100" />
+    </bean>
+    <task:annotation-driven executor="taskExecutor" /> 
 
 	<!-- Scan for transaction-based resources -->
 	<context:component-scan base-package="edu.mum.service,edu.mum.repository" />

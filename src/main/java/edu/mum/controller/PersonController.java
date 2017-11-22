@@ -21,6 +21,9 @@ public class PersonController {
 
 	@Autowired
 	private PersonService personService;
+	
+	@Autowired
+	private SendEmailController sendEmail;
 
 	@SuppressWarnings("unused")
 	@Autowired
@@ -28,6 +31,9 @@ public class PersonController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listMembers(Model model) {
+		System.out.println("About to run");
+		sendEmail.doSendEmail();
+		System.out.println("Running");
 		model.addAttribute("persons", personService.findAll());
 		return "persons/persons";
 	}
