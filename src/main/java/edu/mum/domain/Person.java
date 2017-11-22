@@ -15,9 +15,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+import edu.mum.validation.UniqueUsername;
 
 @Entity
 @Table(name = "persons")
@@ -37,7 +38,7 @@ public class Person implements Serializable {
 
 	@Column(length = 16)
 	@NotEmpty
-	@Size(min = 5, max = 9, message = "{EmptyOrSize}")
+	//@Size(min = 1, max = 16, message = "{EmptyOrSize}")
 	private String lastName;
 
 	@Column(length = 60)
@@ -47,15 +48,22 @@ public class Person implements Serializable {
 	@Transient
 	private String fullName;
 	
+
 	@OneToMany(mappedBy="customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Appointment> appointments;
 
+
+	@UniqueUsername
+	@NotEmpty
 	@Column(nullable = false, unique = true)
 	String username;
+	@NotEmpty
 	@Column(nullable = false)
 	String password;
+	
 	@Transient
 	String verifyPassword;
+	
 	Boolean enabled;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -101,7 +109,7 @@ public class Person implements Serializable {
 	public String getUsername() {
 		return username;
 	}
-
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}
