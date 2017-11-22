@@ -24,7 +24,6 @@
 			</div>
 			<a href="<spring:url value="/appointments/create" />"
 				class="btn btn-primary btn-mini pull-right">Add a new one</a>
-
 		</div>
 	</section>
 
@@ -42,7 +41,7 @@
 							<h4>Session Counsellor -
 								${appointment.session.person.fullName}</h4>
 							<a href="<spring:url value="/appointments/cancel/${appointment.id}" />"
-								class="btn btn-danger  btn-sm"> <span
+								class="btn btn-danger btn-sm delete" data-confirm="Are you sure you want to cancel this appointment?"> <span
 								class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 								Cancel
 							</a>
@@ -50,7 +49,6 @@
 					</div>
 				</div>
 			</c:forEach>
-
 		</div>
 	</section>
 	<%@ include file="../includes/footer.jsp"%>

@@ -32,7 +32,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 	
 	public void deleteById(Long id) {
-		appointmentRepository.delete(id);
+		appointmentRepository.deleteAppointment(id);
 	}
 	
 	
