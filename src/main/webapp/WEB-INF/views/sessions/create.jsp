@@ -7,6 +7,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ include file="../includes/header.jsp"%>
 <title>Create Session</title>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="<spring:url value="/resource/css/wickedpicker.css"/>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="<spring:url value="/resource/js/wickedpicker.js"  />"></script>
+
+
+<script>
+  jQuery(document).ready(function($) {
+    $("#datepicker").datepicker();
+    $("#startTime").wickedpicker();
+
+  });
+  
+  </script>
 </head>
 <body>
 	<%@ include file="../includes/navbar.jsp"%>
@@ -29,20 +44,20 @@
 				<form:errors path="*" cssClass="alert alert-danger" element="div" />
 
 				<div class="form-group">
-					<label class="control-label col-lg-2" for="firstName">Date</label>
+					<label class="control-label col-lg-2" for="datepicker">Date</label>
 					<div class="col-lg-10">
-						<form:input id="firstName" path="date" type="text"
-							class="form-control" placeholder="mm/dd/yyyy" />
+						<form:input id="datepicker" path="date" class="form-control"
+							 placeholder="MM/DD/YYYY"/>
 						<form:errors path="date" cssClass="text-danger" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-lg-2" for="lastName">Start
+					<label class="control-label col-lg-2" for="startTime">Start
 						Time</label>
 					<div class="col-lg-10">
-						<form:input id="lastName" path="startTime" type="text"
-							class="form-control" />
+						<form:input id="startTime" path="startTime" type="text"
+							class="form-control" placeHolder="Starting Time"/>
 						<form:errors path="startTime" cssClass="text-danger" />
 					</div>
 				</div>
