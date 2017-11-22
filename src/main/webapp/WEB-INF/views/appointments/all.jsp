@@ -28,12 +28,22 @@
 	</section>
 
 	<section class="container">
+		<c:if test="${ not empty message}">
+			<div class="alert alert-danger alert-dismissible fade in"
+				role="alert">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				${message}
+			</div>
+		</c:if>
 		<div class="row">
 			<c:forEach items="${appointments}" var="appointment">
 				<div class="col-sm-6 col-md-4" style="padding-bottom: 15px">
 					<div class="thumbnail">
 						<div class="caption">
-							<h4>${appointment.customer.fullName}'s Appointment</h4>
+							<h4>${appointment.customer.fullName}'sAppointment</h4>
 							<hr />
 							<p>Session Date - ${appointment.session.date}</p>
 							<p>Session StartTime - ${appointment.session.startTime}</p>

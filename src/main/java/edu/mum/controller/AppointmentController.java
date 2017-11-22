@@ -52,14 +52,27 @@ public class AppointmentController {
 	}
 
 	@RequestMapping(value = "/cancel/{id}", method = RequestMethod.GET)
-	public String cancelAppointment(@PathVariable("id") Long id, HttpServletRequest request) {
-		appointmentService.deleteById(id);
+	public String cancelAppointment(@PathVariable("id") Long id, HttpServletRequest request,
+			RedirectAttributes redirectAttrs) {
 
+		Appointment appointment = appointmentService.findOne(id);
 		String referer = request.getHeader("Referer");
 
-		return "redirect:" + referer;
+		long millisIn48Hours = 1000 * 60 * 60 * 48;
+		Date hoursago = new Date(new Date().getTime() - millisIn48Hours);
 
-		// return "redirect:/appointments";
+		if (!request.isUserInRole("ROLE_ADMIN")) {
+			if (!appointment.getSession().getDate().before(hoursago)) {
+				redirectAttrs.addFlashAttribute("message",
+						"You cannot cancel this appointment. The appointment is in less than 48 hours. Please contact admin for more info.");
+
+				return "redirect:" + referer;
+			}
+		}
+
+		appointmentService.deleteById(id);
+
+		return "redirect:" + referer;
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -76,11 +89,9 @@ public class AppointmentController {
 		if (result.hasErrors()) {
 			return "appointments/create";
 		}
-		
+
 		Session session = sessionService.findOne(appointment.getSession().getId());
-		
-		
-		
+
 		if (session.getDate().before(new Date())) {
 			redirectAttrs.addFlashAttribute("message", "You cannot book the past session.");
 			return "redirect:/appointments/create";

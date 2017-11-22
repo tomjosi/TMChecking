@@ -28,6 +28,16 @@
 	</section>
 
 	<section class="container">
+		<c:if test="${ not empty message}">
+			<div class="alert alert-danger alert-dismissible fade in"
+				role="alert">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				${message}
+			</div>
+		</c:if>
 		<div class="row">
 			<c:forEach items="${customer.appointments}" var="appointment">
 				<div class="col-sm-6 col-md-4" style="padding-bottom: 15px">
