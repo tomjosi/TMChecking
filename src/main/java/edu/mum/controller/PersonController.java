@@ -3,6 +3,7 @@ package edu.mum.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,9 @@ public class PersonController {
 
 	@Autowired
 	private PersonService personService;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listMembers(Model model) {
@@ -47,7 +51,8 @@ public class PersonController {
 		if (result.hasErrors()) {
 			return "persons/addPerson";
 		}
-
+		memberToBeAdded.setPassword(passwordEncoder.encode(memberToBeAdded.getPassword()));
+		memberToBeAdded.setVerifyPassword(passwordEncoder.encode(memberToBeAdded.getVerifyPassword()));
 		// Error caught by ControllerAdvice IF no authorization...
 		personService.save(memberToBeAdded);
 

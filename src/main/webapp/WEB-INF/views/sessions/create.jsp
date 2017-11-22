@@ -32,7 +32,7 @@
 					<label class="control-label col-lg-2" for="firstName">Date</label>
 					<div class="col-lg-10">
 						<form:input id="firstName" path="date" type="text"
-							class="form-control" />
+							class="form-control" placeholder="mm/dd/yyyy" />
 						<form:errors path="date" cssClass="text-danger" />
 					</div>
 				</div>

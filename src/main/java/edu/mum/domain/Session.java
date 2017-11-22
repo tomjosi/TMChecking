@@ -40,7 +40,7 @@ public class Session implements Serializable {
 
 	@NotNull
 	@Temporal(TemporalType.TIME)
-	@DateTimeFormat(pattern = "HH:mm")
+	@DateTimeFormat(pattern = "hh:mm")
 	private Date startTime;
 	@NotNull
 	@Range(min = 10, max = 30)
