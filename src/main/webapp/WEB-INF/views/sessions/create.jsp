@@ -78,6 +78,21 @@
 					</div>
 				</div>
 
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="verifyPassword">
+						Counsellor</label>
+					<div class="col-lg-10">
+						<div class="form:input-prepend">
+							<form:select class="form-control" id="sel1" path="person.id">
+								<%-- <form:option value="" label="Select Counselor" /> --%>
+								<form:options items="${persons}" itemLabel="fullName"
+									itemValue="id" />
+							</form:select>
+							<form:errors path="person.id" cssClass="text-danger" />
+						</div>
+					</div>
+				</div>
+
 
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">

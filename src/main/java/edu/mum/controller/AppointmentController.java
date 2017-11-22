@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.mum.domain.Appointment;
 import edu.mum.domain.Person;
-import edu.mum.domain.Session;
 import edu.mum.service.AppointmentService;
 import edu.mum.service.PersonService;
 import edu.mum.service.SessionService;
@@ -34,9 +33,10 @@ public class AppointmentController {
 	private PersonService personService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String listAppointments(Model model) {
-		model.addAttribute("appointments", appointmentService.findAll());
+	public String listAppointments(Model model, Principal principal) {
 		model.addAttribute("sessions", sessionService.findAll());
+		Person customer = personService.findByUsername(principal.getName());
+		model.addAttribute("customer", customer);
 		return "appointments/index";
 	}
 
@@ -61,18 +61,18 @@ public class AppointmentController {
 		return "redirect:/sessions";
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String getAddNewAppointmentForm(@ModelAttribute("session") Appointment appointment, Model model) {
-		model.addAttribute("appointment", appointment);
-		model.addAttribute("sessions", sessionService.findAll());
-		return "appointments/create";
-	}
-
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public String deleteAppointment(@PathVariable("id") Long id) {
+	@RequestMapping(value = "/cancel/{id}", method = RequestMethod.GET)
+	public String cancelAppointment(@PathVariable("id") Long id) {
 		appointmentService.deleteById(id);
 
 		return "redirect:/appointments";
+	}
+
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public String getAddNewAppointmentForm(@ModelAttribute("appointment") Appointment appointment, Model model) {
+		model.addAttribute("sessions", sessionService.findAll());
+
+		return "appointments/create";
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -82,15 +82,8 @@ public class AppointmentController {
 		if (result.hasErrors()) {
 			return "appointments/create";
 		}
-		
-		System.out.println(principal.getName());
 
-		Long id = (long) 1;
-		Session session = sessionService.findOne(id);
-		
 		Person customer = personService.findByUsername(principal.getName());
-
-		appointment.setSession(session);
 		appointment.setCustomer(customer);
 
 		// Error caught by ControllerAdvice IF no authorization...

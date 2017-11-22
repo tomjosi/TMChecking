@@ -38,5 +38,9 @@ public class PersonServiceImpl implements PersonService {
 	public Person findByUsername(String username) {
 		return personRepository.findByUsername(username);
 	}
+	
+	public List<Person> findAllCounselor() {
+		return (List<Person>) personRepository.findAllPersonWithRole("ROLE_COUNSELOR");
+	}
 
 }

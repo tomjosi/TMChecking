@@ -14,8 +14,7 @@ public class Authority {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-
-	private String role;
+	
   	@Column(nullable = false)
  	private String authority;
  	
@@ -25,13 +24,7 @@ public class Authority {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
+	
 	public String getAuthority() {
 		return authority;
 	}

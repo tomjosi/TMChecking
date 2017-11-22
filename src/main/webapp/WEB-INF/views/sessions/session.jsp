@@ -13,23 +13,19 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Add Session</h1>
+				<h1>Edit Session</h1>
 				<p>Refresh Yourself with TM Checking</p>
 			</div>
 			<a href="<spring:url value="/sessions/create" />"
 				class="btn btn-primary btn-mini pull-right">Add a new one</a>
 
-
-			<div class="pull-left">
-				<h3>${SpecialBlurb}</h3>
-			</div>
-
 		</div>
 	</section>
 
 	<section class="container">
-	
-	<form:form modelAttribute="session" action="../sessions/${session.id}" method="post" class="form-horizontal">
+
+		<form:form modelAttribute="session" action="../sessions/${session.id}"
+			method="post" class="form-horizontal">
 			<fieldset>
 				<legend>Edit session</legend>
 
@@ -85,6 +81,20 @@
 					</div>
 				</div>
 
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="verifyPassword">
+						Counsellor</label>
+					<div class="col-lg-10">
+						<div class="form:input-prepend">
+							<form:select class="form-control" id="sel1" path="person.id">
+								<form:options items="${persons}" itemLabel="fullName"
+									itemValue="id" />
+							</form:select>
+
+							<form:errors path="person.id" cssClass="text-danger" />
+						</div>
+					</div>
+				</div>
 
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
@@ -95,18 +105,6 @@
 
 			</fieldset>
 		</form:form>
-	
-		<div class="row">
-			<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
-				<div class="thumbnail">
-					<div class="caption">
-						<h3>Date - ${session.date}</h3>
-						<h3>Duration - ${session.duration}</h3>
-					</div>
-				</div>
-			</div>
-
-		</div>
 	</section>
 	<%@ include file="../includes/footer.jsp"%>
 </body>

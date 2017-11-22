@@ -44,7 +44,8 @@
 								class="btn btn-primary  btn-sm"> <span
 								class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 								Edit
-							</a> <a href="<spring:url value="/sessions/delete/${session.id}" />"
+							</a> 
+							<a href="<spring:url value="/sessions/delete/${session.id}" />"
 								class="btn btn-danger btn-sm delete"
 								data-confirm="Are you sure to delete this item?"> <span
 								class="glyphicon glyphicon-trash" aria-hidden="true"></span>

@@ -22,7 +22,8 @@
 	</section>
 	<section class="container">
 
-		<form:form modelAttribute="appointment" class="form-horizontal">
+		<form:form modelAttribute="appointment" id="form"
+			class="form-horizontal">
 			<fieldset>
 				<legend>Add new appointment</legend>
 
@@ -40,14 +41,11 @@
 									<h4>Session Capacity - ${sess.capacity}</h4>
 									<h4>Session Counsellor - ${sess.person.fullName}</h4>
 								</div>
-								
-								<%-- <form:input id="firstName" path="session" value="${session}" type="hidden"
-							class="form-control" /> --%>
 
 								<div class="form-group">
 									<div class="col-lg-offset-2 col-lg-10">
-										<input type="submit" id="btnAdd"
-											class="btn btn-primary btn-sm" value="Book" />
+										<input type="submit" id="btnAdd" data-session="${sess.id}"
+											class="btn btn-primary btn-sm btn-submit" value="Book" />
 									</div>
 								</div>
 							</div>
@@ -57,55 +55,7 @@
 					</c:forEach>
 				</div>
 
-				<%-- <div class="form-group">
-					<label class="control-label col-lg-2" for="firstName">Date</label>
-					<div class="col-lg-10">
-						<form:input id="firstName" path="date" type="text"
-							class="form-control" />
-						<form:errors path="date" cssClass="text-danger" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="control-label col-lg-2" for="lastName">Start
-						Time</label>
-					<div class="col-lg-10">
-						<form:input id="lastName" path="startTime" type="text"
-							class="form-control" />
-						<form:errors path="startTime" cssClass="text-danger" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="control-label col-lg-2" for="email">Duration</label>
-					<div class="col-lg-10">
-						<form:input id="email" path="duration" type="text"
-							class="form-control" />
-						<form:errors path="duration" cssClass="text-danger" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="control-label col-lg-2" for="userName">Location</label>
-					<div class="col-lg-10">
-						<div class="form:input-prepend">
-							<form:input id="username" path="location" type="text"
-								class="form-control" />
-							<form:errors path="location" cssClass="text-danger" />
-						</div>
-					</div>
-				</div>
-
-
-				<div class="form-group">
-					<label class="control-label col-lg-2" for="password">Capacity</label>
-					<div class="col-lg-10">
-						<div class="form:input-prepend">
-							<form:input id="password" path="capacity" class="form-control" />
-							<form:errors path="capacity" cssClass="text-danger" />
-						</div>
-					</div>
-				</div> --%>
+				<form:input path="session.id" id="put-session" type="hidden" />
 			</fieldset>
 		</form:form>
 	</section>

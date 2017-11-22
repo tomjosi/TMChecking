@@ -46,6 +46,9 @@ public class Person implements Serializable {
 
 	@Transient
 	private String fullName;
+	
+	@OneToMany(mappedBy="customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Appointment> appointments;
 
 	@Column(nullable = false, unique = true)
 	String username;
@@ -58,10 +61,6 @@ public class Person implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "username")
 	List<Authority> authority = new ArrayList<Authority>();
-
-	// @OneToOne(fetch = FetchType.LAZY)
-	// @JoinColumn(name = "person_id")
-	// UserCredentials userCredentials;
 
 	public Long getId() {
 		return id;
@@ -86,14 +85,6 @@ public class Person implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-	// public UserCredentials getUserCredentials() {
-	// return userCredentials;
-	// }
-	//
-	// public void setUserCredentials(UserCredentials userCredentials) {
-	// this.userCredentials = userCredentials;
-	// }
 
 	public String getEmailAddress() {
 		return emailAddress;
@@ -145,6 +136,14 @@ public class Person implements Serializable {
 
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
 	}
 
 }

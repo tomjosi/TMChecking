@@ -46,9 +46,10 @@
 						<form:errors path="lastName" cssClass="text-danger" />
 					</div>
 				</div>
-				
+
 				<div class="form-group">
-					<label class="control-label col-lg-2" for="email">Email Address</label>
+					<label class="control-label col-lg-2" for="email">Email
+						Address</label>
 					<div class="col-lg-10">
 						<form:input id="email" path="emailAddress" type="email"
 							class="form-control" />
@@ -61,10 +62,9 @@
 						Name</label>
 					<div class="col-lg-10">
 						<div class="form:input-prepend">
-							<form:input id="username" path="username"
-								type="text" class="form-control" />
-							<form:errors path="username"
-								cssClass="text-danger" />
+							<form:input id="username" path="username" type="text"
+								class="form-control" />
+							<form:errors path="username" cssClass="text-danger" />
 						</div>
 					</div>
 				</div>
@@ -74,10 +74,8 @@
 					<label class="control-label col-lg-2" for="password">Password</label>
 					<div class="col-lg-10">
 						<div class="form:input-prepend">
-							<form:password id="password" path="password"
-								class="form-control" />
-							<form:errors path="password"
-								cssClass="text-danger" />
+							<form:password id="password" path="password" class="form-control" />
+							<form:errors path="password" cssClass="text-danger" />
 						</div>
 					</div>
 				</div>
@@ -88,10 +86,8 @@
 						Password</label>
 					<div class="col-lg-10">
 						<div class="form:input-prepend">
-							<form:password path="verifyPassword"
-								class="form-control" />
-							<form:errors path="verifyPassword"
-								cssClass="text-danger" />
+							<form:password path="verifyPassword" class="form-control" />
+							<form:errors path="verifyPassword" cssClass="text-danger" />
 						</div>
 					</div>
 				</div>
@@ -101,13 +97,14 @@
 						Role</label>
 					<div class="col-lg-10">
 						<div class="form:input-prepend">
-							<form:select class="form-control" id="sel1" path="authority[0].authority">
+							<form:select class="form-control" id="sel1"
+								path="authority[0].authority">
+								<option value="">Please Select</option>
 								<option value="ROLE_USER">User</option>
 								<option value="ROLE_COUNSELOR">Counselor</option>
 							</form:select>
 
-							<form:errors path="authority[0].authority"
-								cssClass="text-danger" />
+							<form:errors path="authority[0].authority" cssClass="text-danger" />
 						</div>
 					</div>
 				</div>

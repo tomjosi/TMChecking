@@ -30,20 +30,27 @@
 
 	<section class="container">
 		<div class="row">
-			<c:forEach items="${sessions}" var="session">
+			<c:forEach items="${customer.appointments}" var="appointment">
 				<div class="col-sm-6 col-md-4" style="padding-bottom: 15px">
 					<div class="thumbnail">
 						<div class="caption">
-							<h4>Session Date - ${session.date}</h4>
-							<h4>Session StartTime - ${session.startTime}</h4>
-							<h4>Session Duration - ${session.duration}</h4>
-							<h4>Session Location - ${session.location}</h4>
-							<h4>Session Capacity - ${session.capacity}</h4>
-							<h4>Session Counsellor - ${session.person.fullName}</h4>
+							<h4>Session Date - ${appointment.session.date}</h4>
+							<h4>Session StartTime - ${appointment.session.startTime}</h4>
+							<h4>Session Duration - ${appointment.session.duration}</h4>
+							<h4>Session Location - ${appointment.session.location}</h4>
+							<h4>Session Capacity - ${appointment.session.capacity}</h4>
+							<h4>Session Counsellor -
+								${appointment.session.person.fullName}</h4>
+							<a href="<spring:url value="/appointments/cancel/${appointment.id}" />"
+								class="btn btn-danger  btn-sm"> <span
+								class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								Cancel
+							</a>
 						</div>
 					</div>
 				</div>
 			</c:forEach>
+
 		</div>
 	</section>
 	<%@ include file="../includes/footer.jsp"%>
