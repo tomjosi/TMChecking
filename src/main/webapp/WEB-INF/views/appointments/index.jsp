@@ -38,7 +38,7 @@
 							<p>Session StartTime - ${appointment.session.startTime}</p>
 							<p>Session Duration - ${appointment.session.duration}</p>
 							<p>Session Location - ${appointment.session.location}</p>
-							<p>Session Capacity - ${appointment.session.capacity}</p>
+							<p>Seat Capacity - ${appointment.session.capacity}</p>
 							<p>Session Counsellor -
 								${appointment.session.person.fullName}</p>
 							<a

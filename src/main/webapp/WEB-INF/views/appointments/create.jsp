@@ -47,7 +47,7 @@
 									<p>Session StartTime - ${sess.startTime}</p>
 									<p>Session Duration - ${sess.duration}</p>
 									<p>Session Location - ${sess.location}</p>
-									<p>Session Capacity - ${sess.capacity}</p>
+									<p>Seat Capacity - ${sess.capacity}</p>
 									<p>Session Counsellor - ${sess.person.fullName}</p>
 								</div>
 

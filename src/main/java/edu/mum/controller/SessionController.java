@@ -1,5 +1,7 @@
 package edu.mum.controller;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.mum.domain.Session;
 import edu.mum.service.PersonService;
@@ -28,14 +31,20 @@ public class SessionController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listSessions(Model model) {
 		model.addAttribute("sessions", sessionService.findAll());
-		
+
 		return "sessions/sessions";
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public String getSessionById(@PathVariable("id") Long id, Model model) {
+	public String getSessionById(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttrs) {
 		model.addAttribute("persons", personService.findAllCounselor());
-		model.addAttribute("session", sessionService.findOne(id));
+		Session session = sessionService.findOne(id);
+		model.addAttribute("session", session);
+		
+		if (session.getDate().before(new Date())) {
+			redirectAttrs.addFlashAttribute("message", "Session with passed date cannot be modified.");
+			return "redirect:/sessions";
+		}
 
 		return "sessions/session";
 	}
@@ -45,8 +54,26 @@ public class SessionController {
 		if (result.hasErrors()) {
 			return "sessions/session";
 		}
-		sessionService.save(updateSession);
 		
+		sessionService.save(updateSession);
+
+		return "redirect:/sessions";
+	}
+
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public String deleteSession(@PathVariable("id") Long id, RedirectAttributes redirectAttrs) {
+		
+		Session session = sessionService.findOne(id);
+		
+		if (session.getDate().before(new Date())) {
+			redirectAttrs.addFlashAttribute("message", "Session with passed date cannot be deleted.");
+			return "redirect:/sessions";
+		}
+		
+		
+		
+		sessionService.deleteById(id);
+
 		return "redirect:/sessions";
 	}
 
@@ -54,25 +81,19 @@ public class SessionController {
 	public String getAddNewSessionForm(@ModelAttribute("session") Session session, Model model) {
 		model.addAttribute("persons", personService.findAllCounselor());
 		model.addAttribute("session", session);
-		
+
 		return "sessions/create";
 	}
 
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public String deleteSession(@PathVariable("id") Long id) {
-		sessionService.deleteById(id);
-		
-		return "redirect:/sessions";
-	}
-
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String processAddNewSessionForm(@ModelAttribute("session") @Valid Session session, BindingResult result, Model model) {
+	public String processAddNewSessionForm(@ModelAttribute("session") @Valid Session session, BindingResult result,
+			Model model) {
 
 		if (result.hasErrors()) {
 			model.addAttribute("persons", personService.findAllCounselor());
 			return "sessions/create";
 		}
-		
+
 		sessionService.save(session);
 
 		return "redirect:/sessions";
