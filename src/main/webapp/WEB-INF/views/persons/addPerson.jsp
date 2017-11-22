@@ -86,7 +86,7 @@
 						Password</label>
 					<div class="col-lg-10">
 						<div class="form:input-prepend">
-							<form:password path="verifyPassword" class="form-control" />
+							<form:password id="verifyPassword" path="verifyPassword" class="form-control" />
 							<form:errors path="verifyPassword" cssClass="text-danger" />
 						</div>
 					</div>

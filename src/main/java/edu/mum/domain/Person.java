@@ -18,10 +18,12 @@ import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import edu.mum.validation.SamePassword;
 import edu.mum.validation.UniqueUsername;
 
 @Entity
 @Table(name = "persons")
+@SamePassword(message = "Confirm Password did not match.")
 public class Person implements Serializable {
 
 	/**
