@@ -14,4 +14,7 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Long>
 	@Query("delete from Appointment a where a.id = ?1")
 	public void deleteAppointment(Long id);
 	
+	@Query("SELECT count(a)>0 from Appointment a where a.customer.id = ?1 and a.session.id = ?2")
+	public boolean appointmentExists(Long customerID, Long sessionID);
+	
 }

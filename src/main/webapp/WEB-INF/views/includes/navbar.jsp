@@ -39,19 +39,23 @@
 						<li><a href="<spring:url value='/sessions' />">List
 								Sessions</a></li>
 					</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Appointment <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="<spring:url value='/appointments/create' />">Create
 								Appointment</a></li>
 						<li><a href="<spring:url value='/appointments' />">List
-								Appointments</a></li>
+								My Appointments</a></li>
+						<security:authorize access="hasRole('ROLE_ADMIN')">
+							<li><a href="<spring:url value='/appointments/all' />">
+									List All Appointments</a></li>
+						</security:authorize>
 					</ul></li>
-<!-- 				<li><a href="#">View Appointment</a></li> -->
+				<!-- 				<li><a href="#">View Appointment</a></li> -->
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-			
+
 				<security:authorize access="isAuthenticated()">
 					<p class="navbar-text navbar-right">
 						Signed in as <a href="#" class="navbar-link"> <security:authentication
@@ -60,7 +64,7 @@
 					</p>
 
 					<%-- <li><a href="<spring:url value='/logout' />"> Logout</a></li> --%>
-<style>
+					<style>
 .logout {
 	position: relative;
 	top: 8px;
@@ -68,7 +72,7 @@
 	text-decoration: none;
 }
 </style>
-					
+
 
 					<li><spring:url value="/logout" var="logout_url" /> <form:form
 							action="${logout_url}" class="form-horizontal" method="POST">

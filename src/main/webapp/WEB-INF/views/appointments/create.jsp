@@ -14,18 +14,26 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Create Appointments</h1>
-				<p>Add New Appointment
-				<p>
+				<h1>Books Appointments</h1>
+				<p>Re-Energize Yourself</p>
 			</div>
 		</div>
 	</section>
-	<section class="container">
 
+	<section class="container">
+		<c:if test="${ not empty message}">
+			<div class="alert alert-danger alert-dismissible fade in"
+				role="alert">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				${message}
+			</div>
+		</c:if>
 		<form:form modelAttribute="appointment" id="form"
 			class="form-horizontal">
 			<fieldset>
-				<legend>Add new appointment</legend>
 
 				<form:errors path="*" cssClass="alert alert-danger" element="div" />
 
@@ -34,12 +42,13 @@
 						<div class="col-sm-6 col-md-4" style="padding-bottom: 15px">
 							<div class="thumbnail">
 								<div class="caption">
-									<h4>Session Date - ${sess.date}</h4>
-									<h4>Session StartTime - ${sess.startTime}</h4>
-									<h4>Session Duration - ${sess.duration}</h4>
-									<h4>Session Location - ${sess.location}</h4>
-									<h4>Session Capacity - ${sess.capacity}</h4>
-									<h4>Session Counsellor - ${sess.person.fullName}</h4>
+									<h4>Appointment Date - ${sess.date}</h4>
+									<hr />
+									<p>Session StartTime - ${sess.startTime}</p>
+									<p>Session Duration - ${sess.duration}</p>
+									<p>Session Location - ${sess.location}</p>
+									<p>Session Capacity - ${sess.capacity}</p>
+									<p>Session Counsellor - ${sess.person.fullName}</p>
 								</div>
 
 								<div class="form-group">

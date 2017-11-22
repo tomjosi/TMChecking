@@ -30,11 +30,13 @@ public class AppointmentServiceImpl implements AppointmentService {
 	public Appointment findOne(Long id) {
 		return appointmentRepository.findOne(id);
 	}
-	
+
 	public void deleteById(Long id) {
 		appointmentRepository.deleteAppointment(id);
 	}
-	
-	
+
+	public boolean checkIfAppointmentExists(Long customerID, Long sessionID) {
+		return appointmentRepository.appointmentExists(customerID, sessionID);
+	}
 
 }

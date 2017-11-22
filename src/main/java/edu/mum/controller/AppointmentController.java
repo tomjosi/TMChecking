@@ -2,6 +2,7 @@ package edu.mum.controller;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,38 +35,28 @@ public class AppointmentController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listAppointments(Model model, Principal principal) {
-		model.addAttribute("sessions", sessionService.findAll());
 		Person customer = personService.findByUsername(principal.getName());
 		model.addAttribute("customer", customer);
+
 		return "appointments/index";
 	}
+	
+	@RequestMapping(value = "/all", method = RequestMethod.GET)
+	public String listAllAppointments(Model model) {
+		model.addAttribute("appointments", appointmentService.findAll());
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public String getAppointmentById(@PathVariable("id") Long id, Model model) {
-		Appointment appointment = appointmentService.findOne(id);
-		model.addAttribute("appointment", appointment);
-
-		return "appointments/appointment";
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public String updateAppointment(@PathVariable("id") Long id, @Valid Appointment updateAppointment,
-			BindingResult result) {
-		if (result.hasErrors()) {
-			return "appointments/appointment";
-		}
-
-		// Error caught by ControllerAdvice IF no authorization...
-
-		appointmentService.save(updateAppointment);
-		return "redirect:/sessions";
+		return "appointments/all";
 	}
 
 	@RequestMapping(value = "/cancel/{id}", method = RequestMethod.GET)
-	public String cancelAppointment(@PathVariable("id") Long id) {
+	public String cancelAppointment(@PathVariable("id") Long id, HttpServletRequest request) {
 		appointmentService.deleteById(id);
 
-		return "redirect:/appointments";
+		String referer = request.getHeader("Referer");
+		
+		return "redirect:" + referer;
+
+		// return "redirect:/appointments";
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -77,8 +68,8 @@ public class AppointmentController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String processAddNewAppointmentForm(@ModelAttribute("appointment") @Valid Appointment appointment,
-			BindingResult result, Principal principal) {
-
+			BindingResult result, Principal principal, Model model) {
+		model.addAttribute("sessions", sessionService.findAll());
 		if (result.hasErrors()) {
 			return "appointments/create";
 		}
@@ -86,7 +77,11 @@ public class AppointmentController {
 		Person customer = personService.findByUsername(principal.getName());
 		appointment.setCustomer(customer);
 
-		// Error caught by ControllerAdvice IF no authorization...
+		if (appointmentService.checkIfAppointmentExists(customer.getId(), appointment.getSession().getId())) {
+			model.addAttribute("message", "You have already booked this session");
+			return "appointments/create";
+		}
+
 		appointmentService.save(appointment);
 
 		return "redirect:/appointments";

@@ -15,7 +15,7 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>List My Appointments</h1>
+				<h1>List all Appointments</h1>
 				<p>Appointment For TM Checking</p>
 
 				<div class="pull-left">
@@ -29,12 +29,13 @@
 
 	<section class="container">
 		<div class="row">
-			<c:forEach items="${customer.appointments}" var="appointment">
+			<c:forEach items="${appointments}" var="appointment">
 				<div class="col-sm-6 col-md-4" style="padding-bottom: 15px">
 					<div class="thumbnail">
 						<div class="caption">
-							<h4>Appointment Date - ${appointment.session.date}</h4>
+							<h4>${appointment.customer.fullName}'s Appointment</h4>
 							<hr />
+							<p>Session Date - ${appointment.session.date}</p>
 							<p>Session StartTime - ${appointment.session.startTime}</p>
 							<p>Session Duration - ${appointment.session.duration}</p>
 							<p>Session Location - ${appointment.session.location}</p>
