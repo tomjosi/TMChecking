@@ -33,6 +33,9 @@ public class AppointmentController {
 
 	@Autowired
 	private SessionService sessionService;
+	
+	@Autowired
+	private SendEmailController sendEmail;
 
 	@Autowired
 	private PersonService personService;
@@ -124,7 +127,7 @@ public class AppointmentController {
 			redirectAttrs.addFlashAttribute("message", "You cannot book the past session.");
 			return "redirect:/appointments/create";
 		}
-
+		
 		Person customer = personService.findByUsername(principal.getName());
 		appointment.setCustomer(customer);
 
@@ -132,8 +135,16 @@ public class AppointmentController {
 			redirectAttrs.addFlashAttribute("message", "You have already booked this session");
 			return "redirect:/appointments/create";
 		}
+		
+		Person counseler = personService.findById(session.getPerson().getId());
+		String customer_email = customer.getEmailAddress();
+		String counseler_email = counseler.getEmailAddress();
 
 		appointmentService.save(appointment);
+		
+		sendEmail.doSendEmail(customer_email,counseler_email, session);
+		appointmentService.save(appointment);
+		redirectAttrs.addFlashAttribute("message", "You have successfully booked the appointment. Please check email for more details.");
 
 		return "redirect:/appointments";
 

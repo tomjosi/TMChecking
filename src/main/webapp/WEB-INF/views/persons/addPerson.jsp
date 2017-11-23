@@ -31,7 +31,7 @@
 					<label class="control-label col-lg-2" for="firstName">First
 						Name</label>
 					<div class="col-lg-10">
-						<form:input id="firstName" path="firstName" type="text"
+						<form:input id="firstNamee" path="firstName" type="text"
 							class="form-control" />
 						<form:errors path="firstName" cssClass="text-danger" />
 					</div>
@@ -41,7 +41,7 @@
 					<label class="control-label col-lg-2" for="lastName">Last
 						Name</label>
 					<div class="col-lg-10">
-						<form:input id="lastName" path="lastName" type="text"
+						<form:input id="lastNamee" path="lastName" type="text"
 							class="form-control" />
 						<form:errors path="lastName" cssClass="text-danger" />
 					</div>

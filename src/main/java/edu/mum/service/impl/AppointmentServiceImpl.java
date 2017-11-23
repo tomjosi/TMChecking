@@ -18,7 +18,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 	@Autowired
 	private AppointmentRepository appointmentRepository;
 
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER', 'ROLE_COUNSELOR')")
 	public void save(Appointment appointment) {
 		appointmentRepository.save(appointment);
 	}
