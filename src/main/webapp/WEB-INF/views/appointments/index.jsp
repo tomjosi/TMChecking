@@ -15,12 +15,8 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>List My Appointments</h1>
+				<h2>${customer.fullName}'s Appointments</h2>
 				<p>Appointment For TM Checking</p>
-
-				<div class="pull-left">
-					<h3>${SpecialBlurb}</h3>
-				</div>
 			</div>
 			<a href="<spring:url value="/appointments/create" />"
 				class="btn btn-primary btn-mini pull-right">Add a new one</a>
@@ -39,7 +35,7 @@
 			</div>
 		</c:if>
 		<div class="row">
-			<c:forEach items="${customer.appointments}" var="appointment">
+			<c:forEach items="${appointments}" var="appointment">
 				<div class="col-sm-6 col-md-4" style="padding-bottom: 15px">
 					<div class="thumbnail">
 						<div class="caption">
@@ -49,6 +45,7 @@
 							<p>Session Duration - ${appointment.session.duration}</p>
 							<p>Session Location - ${appointment.session.location}</p>
 							<p>Seat Capacity - ${appointment.session.capacity}</p>
+							<p>Available - ${appointment.session.occupied}</p>
 							<p>Session Counsellor -
 								${appointment.session.person.fullName}</p>
 							<a

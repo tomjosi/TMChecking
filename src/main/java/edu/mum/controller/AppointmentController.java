@@ -33,7 +33,7 @@ public class AppointmentController {
 
 	@Autowired
 	private SessionService sessionService;
-	
+
 	@Autowired
 	private SendEmailController sendEmail;
 
@@ -43,14 +43,47 @@ public class AppointmentController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listAppointments(Model model, Principal principal) {
 		Person customer = personService.findByUsername(principal.getName());
+
+		List<Appointment> appointments = customer.getAppointments();
+
+		for (Appointment appointment : appointments) {
+			Session session = appointment.getSession();
+			appointmentService.setOccupiedSession(session);
+		}
+
 		model.addAttribute("customer", customer);
+		model.addAttribute("appointments", appointments);
 
 		return "appointments/index";
 	}
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public String listAllAppointments(Model model) {
-		model.addAttribute("appointments", appointmentService.findAll());
+
+		List<Appointment> appointments = appointmentService.findAll();
+
+		model.addAttribute("appointments", appointments);
+
+		for (Appointment appointment : appointments) {
+			Session session = appointment.getSession();
+			appointmentService.setOccupiedSession(session);
+		}
+
+		return "appointments/all";
+	}
+
+	@RequestMapping(value = "/counselor", method = RequestMethod.GET)
+	public String listAllCounsellorAppointments(Model model, Principal principal) {
+		Person customer = personService.findByUsername(principal.getName());
+
+		List<Appointment> appointments = appointmentService.findAllCounsellorAppointment(customer.getId());
+
+		model.addAttribute("appointments", appointments);
+
+		for (Appointment appointment : appointments) {
+			Session session = appointment.getSession();
+			appointmentService.setOccupiedSession(session);
+		}
 
 		return "appointments/all";
 	}
@@ -81,53 +114,62 @@ public class AppointmentController {
 		}
 
 		appointmentService.deleteById(id);
+		
+		Session session = appointment.getSession();
+		Person customer = personService.findById(appointment.getCustomer().getId());
+		Person counseler = personService.findById(session.getPerson().getId());
+		String customer_email = customer.getEmailAddress();
+		String counseler_email = counseler.getEmailAddress();
+		
+		String message = "You Appointment for Transcendental Meditation has been cancelled. \n\n";
+
+		sendEmail.doSendEmail(customer_email, counseler_email, session, message);
+		redirectAttrs.addFlashAttribute("message",
+				"You appointment has been cancelled. Please check email for more details.");
 
 		return "redirect:" + referer;
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String getAddNewAppointmentForm(@ModelAttribute("appointment") Appointment appointment, Model model) {
-		
+
 		List<Session> sessions = sessionService.findAll();
-		
+
 		model.addAttribute("sessions", sessions);
-		
+
 		for (Session session : sessions) {
-			int countSession = appointmentService.checkAppointmentCount(session.getId());
-			int occupied = session.getCapacity() - countSession;
-			session.setOccupied(occupied);
+			appointmentService.setOccupiedSession(session);
 		}
-		
+
 		return "appointments/create";
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String processAddNewAppointmentForm(@ModelAttribute("appointment") @Valid Appointment appointment,
 			BindingResult result, Principal principal, Model model, RedirectAttributes redirectAttrs) {
-		
+
 		Long sessionID = appointment.getSession().getId();
 
 		Session session = sessionService.findOne(sessionID);
-		
+
 		int countSession = appointmentService.checkAppointmentCount(sessionID);
-		
+
 		model.addAttribute("sessions", sessionService.findAll());
-		
+
 		if (result.hasErrors()) {
 			return "appointments/create";
 		}
 		
+		if (session.getDate().before(new Date())) {
+			redirectAttrs.addFlashAttribute("message", "You cannot book the past session.");
+			return "redirect:/appointments/create";
+		}
 		
 		if (countSession >= session.getCapacity()) {
 			redirectAttrs.addFlashAttribute("message", "The session is full.");
 			return "redirect:/appointments/create";
 		}
 
-		if (session.getDate().before(new Date())) {
-			redirectAttrs.addFlashAttribute("message", "You cannot book the past session.");
-			return "redirect:/appointments/create";
-		}
-		
 		Person customer = personService.findByUsername(principal.getName());
 		appointment.setCustomer(customer);
 
@@ -135,16 +177,18 @@ public class AppointmentController {
 			redirectAttrs.addFlashAttribute("message", "You have already booked this session");
 			return "redirect:/appointments/create";
 		}
-		
+
 		Person counseler = personService.findById(session.getPerson().getId());
 		String customer_email = customer.getEmailAddress();
 		String counseler_email = counseler.getEmailAddress();
 
 		appointmentService.save(appointment);
 		
-		sendEmail.doSendEmail(customer_email,counseler_email, session);
-		appointmentService.save(appointment);
-		redirectAttrs.addFlashAttribute("message", "You have successfully booked the appointment. Please check email for more details.");
+		String message = "You have successfully booked the Appointment for Transcendental Meditation. \n\n";
+
+		sendEmail.doSendEmail(customer_email, counseler_email, session, message);
+		redirectAttrs.addFlashAttribute("message",
+				"You have successfully booked the appointment. Please check email for more details.");
 
 		return "redirect:/appointments";
 

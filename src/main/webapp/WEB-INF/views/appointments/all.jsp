@@ -15,12 +15,8 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>List all Appointments</h1>
+				<h2>List all Appointments</h2>
 				<p>Appointment For TM Checking</p>
-
-				<div class="pull-left">
-					<h3>${SpecialBlurb}</h3>
-				</div>
 			</div>
 			<a href="<spring:url value="/appointments/create" />"
 				class="btn btn-primary btn-mini pull-right">Add a new one</a>
@@ -43,13 +39,14 @@
 				<div class="col-sm-6 col-md-4" style="padding-bottom: 15px">
 					<div class="thumbnail">
 						<div class="caption">
-							<h4>${appointment.customer.fullName}'sAppointment</h4>
+							<h4>${appointment.customer.fullName}'s Appointment</h4>
 							<hr />
 							<p>Session Date - ${appointment.session.date}</p>
 							<p>Session StartTime - ${appointment.session.startTime}</p>
 							<p>Session Duration - ${appointment.session.duration}</p>
 							<p>Session Location - ${appointment.session.location}</p>
 							<p>Session Capacity - ${appointment.session.capacity}</p>
+							<p>Available - ${appointment.session.occupied}</p>
 							<p>Session Counsellor -
 								${appointment.session.person.fullName}</p>
 							<a

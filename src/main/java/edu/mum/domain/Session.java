@@ -45,12 +45,12 @@ public class Session implements Serializable {
 	private Date startTime;
 	@NotNull
 	@Range(min = 10, max = 30)
-	private int duration;
+	private Integer duration;
 	@NotEmpty
 	private String location;
 	@NotNull
 	@Min(value = 1)
-	private int capacity;
+	private Integer capacity;
 	
 	@Transient
 	private int occupied;
@@ -75,11 +75,11 @@ public class Session implements Serializable {
 		this.date = date;
 	}
 
-	public int getDuration() {
+	public Integer getDuration() {
 		return duration;
 	}
 
-	public void setDuration(int duration) {
+	public void setDuration(Integer duration) {
 		this.duration = duration;
 	}
 
@@ -91,11 +91,11 @@ public class Session implements Serializable {
 		this.person = person;
 	}
 
-	public int getCapacity() {
+	public Integer getCapacity() {
 		return capacity;
 	}
 
-	public void setCapacity(int capacity) {
+	public void setCapacity(Integer capacity) {
 		this.capacity = capacity;
 	}
 

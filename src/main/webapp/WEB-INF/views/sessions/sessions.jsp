@@ -15,12 +15,8 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Available Sessions</h1>
+				<h2>Available Sessions</h2>
 				<p>Session For TM Checking</p>
-
-				<div class="pull-left">
-					<h3>${SpecialBlurb}</h3>
-				</div>
 			</div>
 			<a href="<spring:url value="/sessions/create" />"
 				class="btn btn-primary btn-mini pull-right">Add a new one</a>
@@ -50,6 +46,7 @@
 							<p>Session Duration - ${session.duration}</p>
 							<p>Session Location - ${session.location}</p>
 							<p>Seat Capacity - ${session.capacity}</p>
+							<p>Available - ${session.occupied}</p>
 							<p>Session Counsellor - ${session.person.fullName}</p>
 							<a href="<spring:url value="/sessions/${session.id}" />"
 								class="btn btn-primary  btn-sm"> <span

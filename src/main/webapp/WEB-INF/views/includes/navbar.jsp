@@ -22,23 +22,45 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Person <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="<spring:url value='/persons/create' />">Add
-								Person</a></li>
-						<li><a href="<spring:url value='/persons' />">List Person</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Session <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="<spring:url value='/sessions/create' />">Create
-								Session</a></li>
-						<li><a href="<spring:url value='/sessions' />">List
-								Sessions</a></li>
-					</ul></li>
+
+
+				<security:authorize access="hasRole('ROLE_ADMIN')">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Person <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="<spring:url value='/persons/create' />">Add
+									Person</a></li>
+							<li><a href="<spring:url value='/persons' />">List
+									Person</a></li>
+						</ul></li>
+				</security:authorize>
+
+
+
+
+
+
+
+				<security:authorize access="hasRole('ROLE_ADMIN')">
+
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Session <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="<spring:url value='/sessions/create' />">Create
+									Session</a></li>
+							<li><a href="<spring:url value='/sessions' />">List
+									Sessions</a></li>
+						</ul></li>
+
+
+				</security:authorize>
+				
+				<security:authorize access="isAuthenticated()">
+				
+				
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Appointment <span class="caret"></span></a>
@@ -51,8 +73,25 @@
 							<li><a href="<spring:url value='/appointments/all' />">
 									List All Appointments</a></li>
 						</security:authorize>
+						<security:authorize access="hasRole('ROLE_COUNSELOR')">
+							<li><a href="<spring:url value='/appointments/counselor' />">
+									List All Appointments</a></li>
+						</security:authorize>
 					</ul></li>
-				<!-- 				<li><a href="#">View Appointment</a></li> -->
+					
+				</security:authorize>
+
+
+
+
+
+
+
+
+
+
+
+				
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 
@@ -64,15 +103,6 @@
 					</p>
 
 					<%-- <li><a href="<spring:url value='/logout' />"> Logout</a></li> --%>
-					<style>
-.logout {
-	position: relative;
-	top: 8px;
-	color: #999;
-	text-decoration: none;
-}
-</style>
-
 
 					<li><spring:url value="/logout" var="logout_url" /> <form:form
 							action="${logout_url}" class="form-horizontal" method="POST">
@@ -84,8 +114,6 @@
 							</div>
 						</form:form></li>
 				</security:authorize>
-
-
 
 				<security:authorize
 					access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_COUNSELOR')">

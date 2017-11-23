@@ -1,6 +1,7 @@
 package edu.mum.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.mum.domain.Session;
+import edu.mum.service.AppointmentService;
 import edu.mum.service.PersonService;
 import edu.mum.service.SessionService;
 
@@ -26,11 +28,21 @@ public class SessionController {
 	private SessionService sessionService;
 
 	@Autowired
+	private AppointmentService appointmentService;
+
+	@Autowired
 	private PersonService personService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listSessions(Model model) {
-		model.addAttribute("sessions", sessionService.findAll());
+
+		List<Session> sessions = sessionService.findAll();
+
+		model.addAttribute("sessions", sessions);
+
+		for (Session session : sessions) {
+			appointmentService.setOccupiedSession(session);
+		}
 
 		return "sessions/sessions";
 	}
@@ -40,7 +52,7 @@ public class SessionController {
 		model.addAttribute("persons", personService.findAllCounselor());
 		Session session = sessionService.findOne(id);
 		model.addAttribute("session", session);
-		
+
 		if (session.getDate().before(new Date())) {
 			redirectAttrs.addFlashAttribute("message", "Session with passed date cannot be modified.");
 			return "redirect:/sessions";
@@ -50,11 +62,22 @@ public class SessionController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public String updateSession(@PathVariable("id") Long id, @Valid Session updateSession, BindingResult result) {
+	public String updateSession(@PathVariable("id") Long id, @Valid Session updateSession, BindingResult result,
+			Model model) {
+		model.addAttribute("persons", personService.findAllCounselor());
+
 		if (result.hasErrors()) {
 			return "sessions/session";
 		}
-		
+
+		int count = appointmentService.checkAppointmentCount(updateSession.getId());
+
+		if (updateSession.getCapacity() < count) {
+			model.addAttribute("message", "Capacity must be greater than the occupied.");
+
+			return "sessions/session";
+		}
+
 		sessionService.save(updateSession);
 
 		return "redirect:/sessions";
@@ -62,16 +85,14 @@ public class SessionController {
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteSession(@PathVariable("id") Long id, RedirectAttributes redirectAttrs) {
-		
+
 		Session session = sessionService.findOne(id);
-		
+
 		if (session.getDate().before(new Date())) {
 			redirectAttrs.addFlashAttribute("message", "Session with passed date cannot be deleted.");
 			return "redirect:/sessions";
 		}
-		
-		
-		
+
 		sessionService.deleteById(id);
 
 		return "redirect:/sessions";

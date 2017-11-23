@@ -6,6 +6,17 @@
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="<spring:url value="/resource/js/wickedpicker.js" />"></script>
 
+
+<style>
+.logout {
+	position: relative;
+	top: 8px;
+	color: #999;
+	text-decoration: none;
+}
+</style>
+
+
 <script>
 	var deleteLinks = document.querySelectorAll('.delete');
 

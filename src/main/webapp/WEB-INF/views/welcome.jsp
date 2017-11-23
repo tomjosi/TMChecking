@@ -14,34 +14,20 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>${greeting}</h1>
+				<h2>${greeting}</h2>
 				<p>${tagline}</p>
 				<p>
 					<security:authorize access="isAuthenticated()">
-  					Welcome  <security:authentication property="principal.username" />
+  						Welcome, ${user.fullName }
 					</security:authorize>
 			</div>
 
 			<div class="container">
 				<security:authorize access="isAnonymous()">
-
 					<a href="<spring:url value='/login' />"
-						class="btn btn-default pull-right"> Login</a>
-
+						class="btn btn-success pull-right"> Login</a>
 				</security:authorize>
-
-				<a href="<spring:url value='/persons' />" class="btn btn-default">
-					<span class="glyphicon-hand-left glyphicon"></span> Persons
-				</a> <a href="<spring:url value='/persons' />" class="btn btn-default">
-					<span class="glyphicon-hand-left glyphicon"></span> Create
-				</a> <a href="<spring:url value='/persons' />" class="btn btn-default">
-					<span class="glyphicon-hand-left glyphicon"></span> View
-				</a>
-
 			</div>
-			<%-- <div class="pull-left">
-				<h3>${SpecialBlurb}</h3>
-			</div> --%>
 		</div>
 	</section>
 	<%@ include file="includes/footer.jsp"%>

@@ -14,7 +14,7 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Create Sessions</h1>
+				<h2>Create Sessions</h2>
 				<p>Add a new one
 				<p>
 			</div>
@@ -24,7 +24,6 @@
 
 		<form:form modelAttribute="session" class="form-horizontal">
 			<fieldset>
-				<legend>Add new session</legend>
 
 				<form:errors path="*" cssClass="alert alert-danger" element="div" />
 

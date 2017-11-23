@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ include file="../includes/header.jsp"%>
-<title>Create Session</title>
+<title>Book Appointment</title>
 </head>
 <body>
 	<%@ include file="../includes/navbar.jsp"%>
@@ -14,7 +14,7 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Books Appointments</h1>
+				<h2>Book Appointment</h2>
 				<p>Re-Energize Yourself</p>
 			</div>
 		</div>
@@ -50,18 +50,19 @@
 									<p>Seat Capacity - ${sess.capacity}</p>
 									<p>Available - ${sess.occupied}</p>
 									<p>Session Counsellor - ${sess.person.fullName}</p>
-								</div>
 
-								<div class="form-group">
-									<div class="col-lg-offset-2 col-lg-10">
-										<input type="submit" id="btnAdd" data-session="${sess.id}"
-											class="btn btn-primary btn-sm btn-submit" value="Book" />
+									<div class="form-group">
+										<div class="col-lg-offset-2 col-lg-10">
+											<button type="submit" id="btnAdd" data-session="${sess.id}"
+												class="btn btn-success btn-sm btn-submit">
+												Book <span class="glyphicon glyphicon-plus"
+													aria-hidden="true"></span>
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>
-
 						</div>
-
 					</c:forEach>
 				</div>
 

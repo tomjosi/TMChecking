@@ -1,5 +1,7 @@
 package edu.mum.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -19,5 +21,8 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Long>
 	
 	@Query("SELECT count(a) from Appointment a where a.session.id = ?1")
 	public int countAppointment(Long sessionID);
+	
+	@Query("SELECT a from Appointment a join a.session s where s.person.id = ?1")
+	public List<Appointment> findAllCounsellorAppointment(Long userID);
 	
 }

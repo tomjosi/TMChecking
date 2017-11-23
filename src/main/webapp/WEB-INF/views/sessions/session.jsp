@@ -24,6 +24,17 @@
 
 	<section class="container">
 
+		<c:if test="${ not empty message}">
+			<div class="alert alert-danger alert-dismissible fade in"
+				role="alert">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				${message}
+			</div>
+		</c:if>
+
 		<form:form modelAttribute="session" action="../sessions/${session.id}"
 			method="post" class="form-horizontal">
 			<fieldset>
