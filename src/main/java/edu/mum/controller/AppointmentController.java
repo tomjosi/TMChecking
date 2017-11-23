@@ -21,6 +21,7 @@ import edu.mum.domain.Appointment;
 import edu.mum.domain.Person;
 import edu.mum.domain.Session;
 import edu.mum.service.AppointmentService;
+import edu.mum.service.EmailService;
 import edu.mum.service.PersonService;
 import edu.mum.service.SessionService;
 
@@ -35,7 +36,7 @@ public class AppointmentController {
 	private SessionService sessionService;
 
 	@Autowired
-	private SendEmailController sendEmail;
+	private EmailService emailService;
 
 	@Autowired
 	private PersonService personService;
@@ -123,7 +124,7 @@ public class AppointmentController {
 		
 		String message = "You Appointment for Transcendental Meditation has been cancelled. \n\n";
 
-		sendEmail.doSendEmail(customer_email, counseler_email, session, message);
+		emailService.doSendEmail(customer_email, counseler_email, session, message);
 		redirectAttrs.addFlashAttribute("message",
 				"You appointment has been cancelled. Please check email for more details.");
 
@@ -186,7 +187,7 @@ public class AppointmentController {
 		
 		String message = "You have successfully booked the Appointment for Transcendental Meditation. \n\n";
 
-		sendEmail.doSendEmail(customer_email, counseler_email, session, message);
+		emailService.doSendEmail(customer_email, counseler_email, session, message);
 		redirectAttrs.addFlashAttribute("message",
 				"You have successfully booked the appointment. Please check email for more details.");
 
