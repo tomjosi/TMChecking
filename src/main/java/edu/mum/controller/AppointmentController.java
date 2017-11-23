@@ -1,6 +1,7 @@
 package edu.mum.controller;
 
 import java.security.Principal;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,12 +58,18 @@ public class AppointmentController {
 
 		Appointment appointment = appointmentService.findOne(id);
 		String referer = request.getHeader("Referer");
+		
+		Date date = appointment.getSession().getDate();
+		Date time = appointment.getSession().getStartTime();
+		
+		Date myDate = new Date(date.getYear(), date.getMonth(), date.getDate(), time.getHours(), time.getMinutes());
+		
 
 		long millisIn48Hours = 1000 * 60 * 60 * 48;
-		Date hoursago = new Date(new Date().getTime() - millisIn48Hours);
+		Date hoursago = new Date(myDate.getTime() - millisIn48Hours);
 
 		if (!request.isUserInRole("ROLE_ADMIN")) {
-			if (!appointment.getSession().getDate().before(hoursago)) {
+			if (! new Date().before(hoursago)) {
 				redirectAttrs.addFlashAttribute("message",
 						"You cannot cancel this appointment. The appointment is in less than 48 hours. Please contact admin for more info.");
 
