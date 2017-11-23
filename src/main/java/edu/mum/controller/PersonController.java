@@ -22,9 +22,6 @@ public class PersonController {
 	@Autowired
 	private PersonService personService;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listMembers(Model model) {
 		model.addAttribute("persons", personService.findAll());
@@ -51,8 +48,6 @@ public class PersonController {
 		if (result.hasErrors()) {
 			return "persons/addPerson";
 		}
-		memberToBeAdded.setPassword(passwordEncoder.encode(memberToBeAdded.getPassword()));
-		memberToBeAdded.setVerifyPassword(passwordEncoder.encode(memberToBeAdded.getVerifyPassword()));
 		// Error caught by ControllerAdvice IF no authorization...
 		personService.save(memberToBeAdded);
 

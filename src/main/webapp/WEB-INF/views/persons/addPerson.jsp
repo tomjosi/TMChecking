@@ -99,7 +99,6 @@
 						<div class="form:input-prepend">
 							<form:select class="form-control" id="sel1"
 								path="authority[0].authority">
-								<option value="">Please Select</option>
 								<option value="ROLE_USER">User</option>
 								<option value="ROLE_COUNSELOR">Counselor</option>
 							</form:select>
