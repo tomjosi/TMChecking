@@ -38,5 +38,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 	public boolean checkIfAppointmentExists(Long customerID, Long sessionID) {
 		return appointmentRepository.appointmentExists(customerID, sessionID);
 	}
+	
+	public int checkAppointmentCount(Long sessionID) {
+		return appointmentRepository.countAppointment(sessionID);
+	}
 
 }

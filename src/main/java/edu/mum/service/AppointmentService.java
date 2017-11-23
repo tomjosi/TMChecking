@@ -14,5 +14,7 @@ public interface AppointmentService {
 	public void deleteById(Long id);
 	
 	public boolean checkIfAppointmentExists(Long customerID, Long sessionID);
+	
+	public int checkAppointmentCount(Long sessionID);
 
 }
