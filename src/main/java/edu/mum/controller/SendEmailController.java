@@ -20,7 +20,7 @@ public class SendEmailController {
     @Async
     public void doSendEmail() {
         // takes input from e-mail form
-        String recipientAddress = "elycheikh16@gmail.com";
+        String recipientAddress = "tmchecking@gmail.com";
         String subject = "Test Email";
         String message = "Message successfully recieved...!";
          

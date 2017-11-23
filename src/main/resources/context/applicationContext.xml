@@ -49,8 +49,8 @@
 		<!-- SMTP settings -->
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
-		<property name="username" value="account.yaman@gmail.com" />
-		<property name="password" value="project@ea" />
+		<property name="username" value="tmchecking@gmail.com" />
+		<property name="password" value="tmchecking123" />
 
 		<property name="javaMailProperties">
 			<!-- additional properties specific to JavaMail -->
